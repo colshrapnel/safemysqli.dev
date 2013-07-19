@@ -79,8 +79,8 @@ class SafeMySQLi
 				{
 					$this->error("Cannot mix named and positional placeholders");
 				}
-                $value = array_shift($args);
-                $type  = trim($part,"?");
+				$value = array_shift($args);
+				$type  = trim($part,"?");
 
 			} else {
     
