@@ -52,7 +52,7 @@ class SafeMySQLi
 		if (key($args) === 0)
 		{
 			$mode = 'numeric';
-			
+
 			$anum  = count($args);
 			$pnum  = floor(count($array) / 2);
 			if ( $pnum != $anum )
@@ -63,8 +63,6 @@ class SafeMySQLi
 		} else {
 
 			$mode = 'named';
-			
-			$names = array();
 		}
 
 		foreach ($array as $i => $part)
@@ -75,38 +73,38 @@ class SafeMySQLi
 				continue;
 			}
 
-            if ($part[0] == '?')
-            {
+			if ($part[0] == '?')
+			{
 				if ($mode == 'named')
 				{
 					$this->error("Cannot mix named and positional placeholders");
 				}
                 $value = array_shift($args);
                 $type  = trim($part,"?");
-                
-            } else {
-                
+
+			} else {
+    
 				if ($mode == 'numeric')
 				{
 					$this->error("Cannot mix named and positional placeholders");
 				}
-				
-                list($type, $key) = explode(":", $part);
-				
+
+				list($type, $key) = explode(":", $part);
+
 				if (isset($args[$key]))
 				{
 					$value = $args[$key];
 					
 				} elseif (isset($args[":$key"])) {
-					
+
 					$value = $args[":$key"];
 
 				} else {
-
+					
 					$this->error("No key found for the named placeholder [$key] in the data array");
 				}
-            }
-            
+			}
+
 			switch ($type)
 			{
 				case '':
