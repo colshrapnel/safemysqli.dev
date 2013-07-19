@@ -1,7 +1,7 @@
 <?php
 
 include 'safemysqli.class.php';
-$db = new SafeMySQLi(['user' =>'test', 'pass' => 'aaa',"emode"=>"exception"]);
+$db = new SafeMySQLi();
 
 $sql = "SELECT :one FROM n:two WHERE f = i:tre OR f = i:tre OR f = :four\n";
 $args['one'] = 'hello';
